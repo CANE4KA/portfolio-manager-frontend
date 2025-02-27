@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie'
 import { Navigate, Outlet } from 'react-router'
 
-import { pageConfig } from '../config/page.config'
+import { pageConfig } from '@/config/page.config'
 
-import { EnumTokens } from '../services/auth/auth.helper'
+import { EnumTokens } from '@/services/auth/auth.helper'
 
-import { useProfile } from '../hooks/useProfile'
+import { useProfile } from '@/hooks/useProfile'
 
 export const RedirectIfAuth = () => {
 	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)

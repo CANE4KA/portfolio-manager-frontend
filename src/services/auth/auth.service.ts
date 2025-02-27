@@ -1,8 +1,7 @@
-import { axiosClassic } from '../../api/axios'
-
-import { IAuthResponse, IUserForm } from '../../types/auth.types'
+import { IAuthResponse, IUserForm } from '@/types/auth.types'
 
 import { saveTokenStorage } from './auth.helper'
+import { axiosClassic } from '@/api/axios'
 
 export const authService = {
 	async main(type: 'login' | 'register', data: IUserForm) {

@@ -3,11 +3,11 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 
-import { pageConfig } from '../config/page.config'
+import { pageConfig } from '@/config/page.config'
 
-import { authService } from '../services/auth/auth.service'
+import { authService } from '@/services/auth/auth.service'
 
-import { IUserForm } from '../types/auth.types'
+import { IUserForm } from '@/types/auth.types'
 
 export const useAuthForm = (isAuth: boolean) => {
 	const navigate = useNavigate()

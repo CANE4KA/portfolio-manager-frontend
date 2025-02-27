@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import { Input } from '../../components/ui/Input'
+import { Input } from '@/components/ui/Input'
 
-import { useAuthForm } from '../../hooks/useAuthForm'
+import { useAuthForm } from '@/hooks/useAuthForm'
 
 export const AuthForm = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false)

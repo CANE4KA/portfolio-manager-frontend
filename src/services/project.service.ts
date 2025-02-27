@@ -1,4 +1,4 @@
-import { axiosClassic, axiosWithAuth } from '../api/axios'
+import { axiosClassic, axiosWithAuth } from '@/api/axios'
 
 export interface IProject {
 	id: string

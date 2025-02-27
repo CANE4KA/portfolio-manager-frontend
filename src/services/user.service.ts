@@ -1,8 +1,7 @@
-import { IUser } from '../types/auth.types'
-
-import { axiosClassic, axiosWithAuth } from '../api/axios'
+import { IUser } from '@/types/auth.types'
 
 import { IProject } from './project.service'
+import { axiosClassic, axiosWithAuth } from '@/api/axios'
 
 export interface IUserResponse {
 	user: {

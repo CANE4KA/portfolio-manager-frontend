@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '@/components/Navbar'
 
-import { AuthForm } from '../screens/auth/AuthForm'
+import { AuthForm } from '@/screens/auth/AuthForm'
 
-import { pageConfig } from '../config/page.config'
+import { pageConfig } from '@/config/page.config'
 
 import { ProtectedRoutes } from './ProtectedRoutes'
 import { RedirectIfAuth } from './RedirectIfAuth'

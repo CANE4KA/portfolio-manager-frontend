@@ -1,23 +1,34 @@
 import { InputHTMLAttributes } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import {
+	FieldValues,
+	Path,
+	RegisterOptions,
+	UseFormRegister
+} from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
-import { IUserForm } from '../../types/auth.types'
-
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Input<T extends FieldValues>
+	extends InputHTMLAttributes<HTMLInputElement> {
 	className?: string
-	register: UseFormRegister<IUserForm>
-	name: keyof IUserForm
+	register: UseFormRegister<T>
+	name: Path<T>
+	rules?: RegisterOptions<T, Path<T>>
 }
 
-export const Input = ({ className, register, name, ...rest }: Props) => {
+export const Input = <T extends FieldValues>({
+	className,
+	register,
+	name,
+	rules,
+	...rest
+}: Input<T>) => {
 	return (
 		<input
 			className={twMerge(
 				'rounded px-4 py-2 outline-none border-2 border-transparent focus:border-blue-700 hover:border-blue-700 text-black',
 				className
 			)}
-			{...register(name, { required: true })}
+			{...register(name, rules)}
 			{...rest}
 		/>
 	)

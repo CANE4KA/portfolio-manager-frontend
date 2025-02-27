@@ -1,4 +1,4 @@
-import { axiosWithAuth } from '../api/axios'
+import { axiosWithAuth } from '@/api/axios'
 
 export interface IProfile {
 	bio: string

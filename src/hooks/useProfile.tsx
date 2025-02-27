@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { userService } from '../services/user.service'
+import { userService } from '@/services/user.service'
 
 export function useProfile() {
 	const { data, isLoading } = useQuery({
@@ -11,6 +11,7 @@ export function useProfile() {
 
 	return {
 		isLoading,
-		user: data?.user
+		user: data?.user,
+		projects: data?.user.projects
 	}
 }

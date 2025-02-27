@@ -1,6 +1,6 @@
-import { pageConfig } from '../config/page.config'
+import { pageConfig } from '@/config/page.config'
 
-import { IProjectAll } from '../services/project.service'
+import { IProjectAll } from '@/services/project.service'
 
 export const ProjectCard = ({ project }: { project: IProjectAll }) => {
 	return (

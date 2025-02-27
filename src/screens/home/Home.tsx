@@ -1,6 +1,6 @@
-import { ProjectCard } from '../../components/ProjectCard'
+import { ProjectCard } from '@/components/ProjectCard'
 
-import { useProject } from '../../hooks/useProject'
+import { useProject } from '@/hooks/useProject'
 
 export const Home = () => {
 	const { projects } = useProject()

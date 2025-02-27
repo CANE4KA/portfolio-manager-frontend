@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from 'react-router'
 
-import { pageConfig } from '../config/page.config'
+import { pageConfig } from '@/config/page.config'
 
-import { useProfile } from '../hooks/useProfile'
+import { useProfile } from '@/hooks/useProfile'
 
 export const ProtectedRoutes = () => {
 	const { isLoading, user } = useProfile()

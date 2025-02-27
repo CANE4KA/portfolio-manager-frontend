@@ -1,6 +1,6 @@
 import axios, { type CreateAxiosDefaults } from 'axios'
 
-import { getAccessToken } from '../services/auth/auth.helper'
+import { getAccessToken } from '@/services/auth/auth.helper'
 
 import { getContentType } from './api.helper'
 

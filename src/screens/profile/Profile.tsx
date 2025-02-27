@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
-import { userService } from '../../services/user.service'
+import { userService } from '@/services/user.service'
 
 export const Profile = () => {
 	const { username } = useParams()
