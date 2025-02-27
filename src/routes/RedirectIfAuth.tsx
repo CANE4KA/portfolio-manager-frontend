@@ -5,10 +5,14 @@ import { pageConfig } from '../config/page.config'
 
 import { EnumTokens } from '../services/auth/auth.helper'
 
+import { useProfile } from '../hooks/useProfile'
+
 export const RedirectIfAuth = () => {
 	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
 
-	if (accessToken) return <Navigate to={pageConfig.account} />
+	const { user } = useProfile()
+
+	if (accessToken && user) return <Navigate to={pageConfig.account} />
 
 	return <Outlet />
 }
