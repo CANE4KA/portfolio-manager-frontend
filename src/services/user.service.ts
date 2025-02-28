@@ -1,29 +1,6 @@
-import { IUser } from '@/types/auth.types'
+import { IUser, IUserResponse } from '@/types/auth.types'
 
-import { IProject } from './project.service'
 import { axiosClassic, axiosWithAuth } from '@/api/axios'
-
-export interface IUserResponse {
-	user: {
-		username: string
-		email: string
-		profile: {
-			createdAt: Date
-			updatedAt: Date
-			userId: string
-			bio: string
-			location: string
-			website: string
-			github: string
-			telegram: string
-		}
-		projects: IProject[]
-		skills: {
-			userId: string
-			skillId: string
-		}[]
-	}
-}
 
 class UserService {
 	private BASE_URL = '/user'

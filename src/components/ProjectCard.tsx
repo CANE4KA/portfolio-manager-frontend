@@ -4,7 +4,7 @@ import { IProjectAll } from '@/services/project.service'
 
 export const ProjectCard = ({ project }: { project: IProjectAll }) => {
 	return (
-		<div className='border border-gray-700 p-2'>
+		<div className='border border-border p-2'>
 			<p>Название: {project.title}</p>
 			<div className='text-left'>
 				<p>Описание: {project.description ?? 'описания нет'}</p>

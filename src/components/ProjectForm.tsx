@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import {
 	UseFormHandleSubmit,
 	UseFormRegister,
@@ -16,19 +17,22 @@ interface Props {
 	register: UseFormRegister<IProject>
 	reset: UseFormReset<IProject>
 	isUpdate: boolean
+	setIsOpenForm: Dispatch<SetStateAction<boolean>>
 }
 
 export const ProjectForm = ({
 	handleSubmit,
 	register,
 	reset,
-	isUpdate
+	isUpdate,
+	setIsOpenForm
 }: Props) => {
 	const { mutate } = useCreateProject(isUpdate)
 
 	const onSubmit = (data: IProject) => {
 		mutate(data)
 		!isUpdate && reset()
+		setIsOpenForm(false)
 	}
 
 	return (

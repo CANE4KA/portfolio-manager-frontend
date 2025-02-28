@@ -10,7 +10,7 @@ export const Button = ({ className, children, ...rest }: Button) => {
 		<button
 			className={twMerge(
 				className,
-				'rounded border border-transparent px-4 py-2 bg-[#1a1a1a] cursor-pointer transition-colors hover:border-[#646cff]'
+				'rounded border border-transparent px-4 py-2 bg-dark-500 cursor-pointer transition-colors hover:border-border'
 			)}
 			{...rest}
 		>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 
-import { Navbar } from '@/components/Navbar'
+import { Layout } from '@/components/Layout'
 
 import { AuthForm } from '@/screens/auth/AuthForm'
 
@@ -15,20 +15,20 @@ export const ReactRoutes = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<ProtectedRoutes />}>
-					{PROTECT_ROUTES.map(route => (
-						<Route key={route.path || 'home'} {...route} />
-					))}
-				</Route>
-
-				<Route element={<Navbar />}>
-					<Route element={<RedirectIfAuth />}>
-						<Route path={pageConfig.auth} element={<AuthForm />} />
+				<Route element={<Layout />}>
+					<Route element={<ProtectedRoutes />}>
+						{PROTECT_ROUTES.map(route => (
+							<Route key={route.path || 'home'} {...route} />
+						))}
 					</Route>
 
 					{PUBLIC_ROUTES.map(route => (
 						<Route key={route.path || 'home'} {...route} />
 					))}
+				</Route>
+
+				<Route element={<RedirectIfAuth />}>
+					<Route path={pageConfig.auth} element={<AuthForm />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

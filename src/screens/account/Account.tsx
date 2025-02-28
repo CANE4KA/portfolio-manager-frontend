@@ -1,14 +1,10 @@
-import { CirclePlus, CircleX, LogOut, Undo2 } from 'lucide-react'
+import { CirclePlus, CircleX } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router'
 
 import { ProjectCardAccount } from '@/components/ProjectCardAccount'
 import { ProjectForm } from '@/components/ProjectForm'
 
-import { pageConfig } from '@/config/page.config'
-
-import { removeFromStorage } from '@/services/auth/auth.helper'
 import { IProject } from '@/services/project.service'
 
 import { useDeleteProject } from '@/hooks/useDeleteProject'
@@ -25,11 +21,6 @@ export const Account = () => {
 		mode: 'onChange'
 	})
 
-	const onExit = () => {
-		removeFromStorage()
-		navigate(pageConfig.home)
-	}
-
 	const onDeleteProject = (id: string) => {
 		mutate(id)
 	}
@@ -44,24 +35,11 @@ export const Account = () => {
 		setValue('url', data.url)
 	}
 
-	const navigate = useNavigate()
-
 	return (
-		<div>
-			<div className='flex items-center justify-evenly mb-10 mt-2'>
-				<Link to={pageConfig.home}>
-					<Undo2 />
-				</Link>
-
-				<p>Личный кабинет</p>
-
-				<button onClick={onExit}>
-					<LogOut />
-				</button>
-			</div>
-
+		<>
 			<button
-				className='mb-2'
+				className='absolute top-0 right-1'
+				title={isOpenForm ? 'Close project form' : 'Open project form'}
 				onClick={() => {
 					setIsOpenForm(prev => !prev)
 					setIsUpdate(false)
@@ -77,6 +55,7 @@ export const Account = () => {
 					register={register}
 					reset={reset}
 					isUpdate={isUpdate}
+					setIsOpenForm={setIsOpenForm}
 				/>
 			)}
 
@@ -92,6 +71,6 @@ export const Account = () => {
 						))
 					: 'Нету проектов'}
 			</div>
-		</div>
+		</>
 	)
 }

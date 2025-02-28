@@ -2,7 +2,8 @@ const PageConfig = () => ({
 	home: '/',
 	auth: '/auth',
 	profile: '/profile',
-	account: '/account'
+	account: '/account',
+	userSettings: '/settings'
 })
 
 export const pageConfig = PageConfig()

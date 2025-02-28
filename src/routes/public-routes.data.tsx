@@ -1,6 +1,6 @@
-import { Home } from 'lucide-react'
 import { RouteProps } from 'react-router'
 
+import { Home } from '@/screens/home/Home'
 import { Profile } from '@/screens/profile/Profile'
 
 import { pageConfig } from '@/config/page.config'

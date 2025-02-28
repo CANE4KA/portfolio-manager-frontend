@@ -10,7 +10,7 @@ interface Props {
 
 export const ProjectCardAccount = ({ project, onDelete, onEdit }: Props) => {
 	return (
-		<div className='border border-gray-700 p-2'>
+		<div className='border border-border p-2'>
 			<p>Название: {project.title}</p>
 			<div className='text-left'>
 				<p>Описание: {project.description ?? 'описания нет'}</p>
@@ -20,10 +20,10 @@ export const ProjectCardAccount = ({ project, onDelete, onEdit }: Props) => {
 			</div>
 
 			<div className='flex justify-between'>
-				<button onClick={() => onEdit(project)}>
+				<button onClick={() => onEdit(project)} title='Edit project'>
 					<Edit />
 				</button>
-				<button onClick={() => onDelete(project.id)}>
+				<button onClick={() => onDelete(project.id)} title='Delete project'>
 					<Trash />
 				</button>
 			</div>

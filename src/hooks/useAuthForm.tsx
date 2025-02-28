@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router'
 
 import { pageConfig } from '@/config/page.config'
@@ -24,7 +25,7 @@ export const useAuthForm = (isAuth: boolean) => {
 		},
 		onError(error) {
 			if (axios.isAxiosError(error)) {
-				console.error(error.response?.data?.message)
+				toast.error(error.response?.data?.message)
 			}
 		}
 	})

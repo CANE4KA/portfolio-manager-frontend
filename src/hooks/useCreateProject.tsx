@@ -1,4 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 import { IProject, projectService } from '@/services/project.service'
 
@@ -10,6 +12,12 @@ export const useCreateProject = (isUpdate: boolean) => {
 		mutationFn: (data: IProject) => projectService.create(data),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['profile'] })
+			toast.success('Project add success')
+		},
+		onError(error) {
+			if (axios.isAxiosError(error)) {
+				toast.error(error.response?.data?.message)
+			}
 		}
 	})
 
@@ -18,6 +26,12 @@ export const useCreateProject = (isUpdate: boolean) => {
 		mutationFn: (data: IProject) => projectService.update(data.id, data),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['profile'] })
+			toast.success('Project update success')
+		},
+		onError(error) {
+			if (axios.isAxiosError(error)) {
+				toast.error(error.response?.data?.message)
+			}
 		}
 	})
 
