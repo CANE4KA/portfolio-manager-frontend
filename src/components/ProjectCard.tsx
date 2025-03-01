@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 import { pageConfig } from '@/config/page.config'
 
 import { IProjectAll } from '@/services/project.service'
@@ -9,7 +11,10 @@ export const ProjectCard = ({ project }: { project: IProjectAll }) => {
 			<div className='text-left'>
 				<p>Описание: {project.description ?? 'описания нет'}</p>
 				<p>
-					Ссылка на проект: <a href={project.url}>{project.url}</a>
+					Ссылка на проект:{' '}
+					<Link to={project.url} target='_blank'>
+						{project.url}
+					</Link>
 				</p>
 				<p>
 					Работу делал:{' '}

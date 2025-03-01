@@ -21,21 +21,21 @@ export const AuthForm = () => {
 				rules={{ required: true }}
 				register={register}
 				name='username'
-				placeholder='Enter username:'
+				placeholder='Username'
 				type='text'
 			/>
 			<Input
 				rules={{ required: true }}
 				register={register}
 				name='email'
-				placeholder='Enter email:'
+				placeholder='Email'
 				type='email'
 			/>
 			<Input
 				rules={{ required: true }}
 				register={register}
 				name='password'
-				placeholder='Enter password:'
+				placeholder='Password'
 				type='password'
 			/>
 

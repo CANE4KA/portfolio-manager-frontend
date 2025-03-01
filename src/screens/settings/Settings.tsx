@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/Input'
 import { useProfile } from '@/hooks/useProfile'
 import { useSettingsForm } from '@/hooks/useSettingsForm'
 
-export const AccountSettings = () => {
+export const Settings = () => {
 	const [isEdit, setIsEdit] = useState<boolean>(false)
 
 	const { user } = useProfile()
@@ -29,11 +29,36 @@ export const AccountSettings = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='flex flex-col items-center gap-2 mt-2'
 		>
-			<Input name='bio' register={register} disabled={!isEdit} />
-			<Input name='location' register={register} disabled={!isEdit} />
-			<Input name='github' register={register} disabled={!isEdit} />
-			<Input name='telegram' register={register} disabled={!isEdit} />
-			<Input name='website' register={register} disabled={!isEdit} />
+			<Input
+				name='bio'
+				register={register}
+				disabled={!isEdit}
+				placeholder='Bio'
+			/>
+			<Input
+				name='location'
+				register={register}
+				disabled={!isEdit}
+				placeholder='Location'
+			/>
+			<Input
+				name='github'
+				register={register}
+				disabled={!isEdit}
+				placeholder='Github'
+			/>
+			<Input
+				name='telegram'
+				register={register}
+				disabled={!isEdit}
+				placeholder='Telegram'
+			/>
+			<Input
+				name='website'
+				register={register}
+				disabled={!isEdit}
+				placeholder='Website'
+			/>
 
 			<div className='flex gap-2'>
 				<Button

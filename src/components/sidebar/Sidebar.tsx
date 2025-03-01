@@ -1,16 +1,20 @@
 import Cookies from 'js-cookie'
-import { LogIn, LogOut } from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router'
+import { LogIn, LogOut, PanelLeftOpen, PanelRightOpen } from 'lucide-react'
+import * as m from 'motion/react-m'
+import { useNavigate } from 'react-router'
 
 import { pageConfig } from '@/config/page.config'
 
 import { EnumTokens, removeFromStorage } from '@/services/auth/auth.helper'
 
-import { MenuItem } from './MenuItem'
-import { MENU } from './menu.data'
+import { Menu } from './Menu'
 
-export const Sidebar = () => {
-	const { pathname } = useLocation()
+interface Props {
+	isCollapsed: boolean
+	onToggle: () => void
+}
+
+export const Sidebar = ({ isCollapsed, onToggle }: Props) => {
 	const navigate = useNavigate()
 
 	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
@@ -21,20 +25,26 @@ export const Sidebar = () => {
 	}
 
 	return (
-		<aside className='border-r border-solid border-border flex flex-col justify-between items-center pb-5'>
-			<div>
-				{MENU.map(item => (
-					<MenuItem
-						item={item}
-						key={item.link}
-						isActive={pathname === item.link}
-					/>
-				))}
+		<m.aside
+			className={`border border-border rounded flex flex-col justify-between items-center pb-5 m-2 mt-0 relative`}
+			animate={{ width: isCollapsed ? 60 : 192 }}
+			transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+		>
+			<div className='w-full'>
+				<button
+					onClick={onToggle}
+					className='w-full flex justify-center py-2'
+					title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
+				>
+					{isCollapsed ? <PanelLeftOpen /> : <PanelRightOpen />}
+				</button>
+
+				<Menu isCollapsed={isCollapsed} />
 			</div>
 
 			<button onClick={onClick} title={accessToken ? 'Log Out' : 'Log In'}>
 				{accessToken ? <LogOut /> : <LogIn />}
 			</button>
-		</aside>
+		</m.aside>
 	)
 }

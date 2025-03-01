@@ -1,4 +1,5 @@
 import { Edit, Trash } from 'lucide-react'
+import { Link } from 'react-router'
 
 import { IProject } from '@/services/project.service'
 
@@ -12,10 +13,14 @@ export const ProjectCardAccount = ({ project, onDelete, onEdit }: Props) => {
 	return (
 		<div className='border border-border p-2'>
 			<p>Название: {project.title}</p>
+
 			<div className='text-left'>
 				<p>Описание: {project.description ?? 'описания нет'}</p>
 				<p>
-					Ссылка на проект: <a href={project.url}>{project.url}</a>
+					Ссылка на проект:{' '}
+					<Link to={project.url} target='_blank'>
+						{project.url}
+					</Link>
 				</p>
 			</div>
 
@@ -23,6 +28,7 @@ export const ProjectCardAccount = ({ project, onDelete, onEdit }: Props) => {
 				<button onClick={() => onEdit(project)} title='Edit project'>
 					<Edit />
 				</button>
+
 				<button onClick={() => onDelete(project.id)} title='Delete project'>
 					<Trash />
 				</button>

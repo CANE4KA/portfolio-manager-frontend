@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie'
 import { Navigate, Outlet } from 'react-router'
 
+import { Header } from '@/components/Header'
+
 import { pageConfig } from '@/config/page.config'
 
 import { EnumTokens } from '@/services/auth/auth.helper'
@@ -14,5 +16,10 @@ export const RedirectIfAuth = () => {
 
 	if (accessToken && user) return <Navigate to={pageConfig.account} />
 
-	return <Outlet />
+	return (
+		<>
+			<Header />
+			<Outlet />
+		</>
+	)
 }

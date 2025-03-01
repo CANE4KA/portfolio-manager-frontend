@@ -47,18 +47,21 @@ export const ProjectForm = ({
 				register={register}
 				rules={{ required: true }}
 				autoComplete='off'
+				placeholder='Title'
 			/>
 			<Input
 				name='description'
 				register={register}
 				rules={{ required: true }}
 				autoComplete='off'
+				placeholder='Description'
 			/>
 			<Input
 				name='url'
 				register={register}
 				rules={{ required: true }}
 				autoComplete='off'
+				placeholder='Url'
 			/>
 
 			<Button>{isUpdate ? 'Update' : 'Add'}</Button>
