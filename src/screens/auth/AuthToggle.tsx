@@ -7,14 +7,14 @@ interface Props {
 
 export const AuthToggle = ({ isAuth, setIsAuth }: Props) => {
 	return (
-		<div className='text-sm'>
+		<div className='text-lg'>
 			{isAuth ? (
 				<p>
 					Don't have an account yet?{' '}
 					<button
 						type='button'
 						onClick={() => setIsAuth(false)}
-						className='hover:text-border transition-colors'
+						className='text-primary hover:text-secondary transition-colors'
 					>
 						Sign up
 					</button>
@@ -25,7 +25,7 @@ export const AuthToggle = ({ isAuth, setIsAuth }: Props) => {
 					<button
 						type='button'
 						onClick={() => setIsAuth(true)}
-						className='hover:text-border transition-colors'
+						className='text-primary hover:text-secondary transition-colors'
 					>
 						Sign in
 					</button>

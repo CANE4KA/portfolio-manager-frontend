@@ -25,7 +25,7 @@ export const Input = <T extends FieldValues>({
 	return (
 		<input
 			className={twMerge(
-				'rounded px-4 py-2 outline-none border focus:border-primary text-gray-50 placeholder:text-gray-50/50 bg-transparent border-border transition-colors',
+				'rounded px-4 py-2 outline-none border focus:border-primary text-gray-50 placeholder:text-gray-50/50 bg-transparent border-border transition-colors disabled:text-gray-50/20 disabled:placeholder:text-gray-50/20',
 				className
 			)}
 			{...register(name, rules)}

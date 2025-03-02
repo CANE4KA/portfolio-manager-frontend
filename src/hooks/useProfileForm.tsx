@@ -4,9 +4,11 @@ import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
-import { IProfile, profileService } from '@/services/profile.service'
+import { userService } from '@/services/user.service'
 
-export const useSettingsForm = (
+import { IUserForm } from '@/types/auth.types'
+
+export const useProfileForm = (
 	setIsEdit: Dispatch<SetStateAction<boolean>>
 ) => {
 	const {
@@ -15,14 +17,14 @@ export const useSettingsForm = (
 		setValue,
 		getValues,
 		formState: { touchedFields }
-	} = useForm<IProfile>({ mode: 'onChange' })
+	} = useForm<IUserForm>({ mode: 'onChange' })
 
 	const { mutate, isPending: isLoading } = useMutation({
-		mutationKey: ['settings update'],
-		mutationFn: (data: IProfile) => profileService.update(data),
+		mutationKey: ['profile update'],
+		mutationFn: (data: IUserForm) => userService.update(data),
 		onSuccess: () => {
 			setIsEdit(false)
-			toast.success('Settings update')
+			toast.success('Profile update')
 		},
 		onError(error) {
 			if (axios.isAxiosError(error)) {
@@ -33,11 +35,11 @@ export const useSettingsForm = (
 
 	const onSubmit = () => {
 		const allValues = getValues()
-		const changedData: IProfile = {}
+		const changedData: IUserForm = {}
 
 		Object.entries(allValues).forEach(([key, value]) => {
-			if (touchedFields[key as keyof IProfile]) {
-				changedData[key as keyof IProfile] = value
+			if (touchedFields[key as keyof IUserForm]) {
+				changedData[key as keyof IUserForm] = value
 			}
 		})
 

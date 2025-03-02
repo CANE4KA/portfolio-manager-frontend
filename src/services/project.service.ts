@@ -8,7 +8,7 @@ export interface IProject {
 }
 
 export interface IProjectAll extends IProject {
-	user: {
+	user?: {
 		username: string
 	}
 }

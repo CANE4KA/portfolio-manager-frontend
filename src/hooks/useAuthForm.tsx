@@ -13,7 +13,14 @@ import { IUserForm } from '@/types/auth.types'
 export const useAuthForm = (isAuth: boolean) => {
 	const navigate = useNavigate()
 
-	const { register, handleSubmit, reset } = useForm<IUserForm>()
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<IUserForm>({
+		mode: 'onChange'
+	})
 
 	const { mutate: mutate, isPending: isLoading } = useMutation({
 		mutationKey: [isAuth ? 'login' : 'register'],
@@ -34,5 +41,5 @@ export const useAuthForm = (isAuth: boolean) => {
 		mutate(data)
 	}
 
-	return { onSubmit, handleSubmit, isLoading, register }
+	return { onSubmit, handleSubmit, isLoading, register, errors }
 }

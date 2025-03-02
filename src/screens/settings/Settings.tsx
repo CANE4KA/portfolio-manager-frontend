@@ -1,78 +1,62 @@
 import { useEffect, useState } from 'react'
 
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
-
 import { useProfile } from '@/hooks/useProfile'
+import { useProfileForm } from '@/hooks/useProfileForm'
 import { useSettingsForm } from '@/hooks/useSettingsForm'
 
+import { ProfileForm } from './ProfileForm'
+import { SettingsForm } from './SettingsForm'
+
 export const Settings = () => {
-	const [isEdit, setIsEdit] = useState<boolean>(false)
+	const [isEditSettings, setIsEditSettings] = useState<boolean>(false)
+	const [isEditProfile, setIsEditProfile] = useState<boolean>(false)
 
 	const { user } = useProfile()
 
-	const { handleSubmit, onSubmit, register, setValue } =
-		useSettingsForm(setIsEdit)
+	const {
+		handleSubmit: handleSubmitSettings,
+		onSubmit: onSubmitSettings,
+		register: registerSettings,
+		setValue: setValueSettings
+	} = useSettingsForm(setIsEditSettings)
+
+	const {
+		handleSubmit: handleSubmitProfile,
+		onSubmit: onSubmitProfile,
+		register: registerProfile,
+		setValue: setValueProfile
+	} = useProfileForm(setIsEditProfile)
 
 	useEffect(() => {
 		if (user) {
-			setValue('bio', user.profile.bio)
-			setValue('location', user.profile.location)
-			setValue('website', user.profile.website)
-			setValue('github', user.profile.github)
-			setValue('telegram', user.profile.telegram)
+			setValueProfile('username', user.username)
+			setValueProfile('email', user.email)
+
+			setValueSettings('bio', user.profile.bio)
+			setValueSettings('location', user.profile.location)
+			setValueSettings('website', user.profile.website)
+			setValueSettings('github', user.profile.github)
+			setValueSettings('telegram', user.profile.telegram)
 		}
 	}, [user])
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			className='flex flex-col items-center gap-2 mt-2'
-		>
-			<Input
-				name='bio'
-				register={register}
-				disabled={!isEdit}
-				placeholder='Bio'
-			/>
-			<Input
-				name='location'
-				register={register}
-				disabled={!isEdit}
-				placeholder='Location'
-			/>
-			<Input
-				name='github'
-				register={register}
-				disabled={!isEdit}
-				placeholder='Github'
-			/>
-			<Input
-				name='telegram'
-				register={register}
-				disabled={!isEdit}
-				placeholder='Telegram'
-			/>
-			<Input
-				name='website'
-				register={register}
-				disabled={!isEdit}
-				placeholder='Website'
+		<>
+			<ProfileForm
+				isEdit={isEditProfile}
+				setIsEdit={setIsEditProfile}
+				handleSubmit={handleSubmitProfile}
+				onSubmit={onSubmitProfile}
+				register={registerProfile}
 			/>
 
-			<div className='flex gap-2'>
-				<Button
-					type='button'
-					onClick={() => setIsEdit(prev => !prev)}
-					title='Edit data'
-				>
-					{isEdit ? 'Close' : 'Edit'}
-				</Button>
-
-				<Button disabled={!isEdit} title='Save data'>
-					Save
-				</Button>
-			</div>
-		</form>
+			<SettingsForm
+				isEdit={isEditSettings}
+				setIsEdit={setIsEditSettings}
+				handleSubmit={handleSubmitSettings}
+				onSubmit={onSubmitSettings}
+				register={registerSettings}
+			/>
+		</>
 	)
 }

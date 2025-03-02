@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { Loader } from '@/components/ui/Loader'
 
 import { useAuthForm } from '@/hooks/useAuthForm'
 
@@ -10,7 +11,7 @@ import { AuthToggle } from './AuthToggle'
 export const AuthForm = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false)
 
-	const { handleSubmit, register, onSubmit } = useAuthForm(isAuth)
+	const { handleSubmit, register, onSubmit, isLoading } = useAuthForm(isAuth)
 
 	return (
 		<form
@@ -32,14 +33,16 @@ export const AuthForm = () => {
 				type='email'
 			/>
 			<Input
-				rules={{ required: true }}
+				rules={{
+					required: true
+				}}
 				register={register}
 				name='password'
 				placeholder='Password'
 				type='password'
 			/>
 
-			<Button>{isAuth ? 'Войти' : 'Зарегистрироваться'}</Button>
+			<Button>{isLoading ? <Loader /> : isAuth ? 'Sign in' : 'Sign up'}</Button>
 
 			<AuthToggle isAuth={isAuth} setIsAuth={setIsAuth} />
 		</form>

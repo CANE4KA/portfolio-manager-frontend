@@ -1,9 +1,9 @@
-import { CirclePlus, CircleX } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { ProjectCardAccount } from '@/components/ProjectCardAccount'
-import { ProjectForm } from '@/components/ProjectForm'
+import { ProjectModal } from '@/components/ProjectModal'
+import { Button } from '@/components/ui/Button'
 
 import { IProject } from '@/services/project.service'
 
@@ -12,7 +12,7 @@ import { useProfile } from '@/hooks/useProfile'
 
 export const Account = () => {
 	const [isUpdate, setIsUpdate] = useState<boolean>(false)
-	const [isOpenForm, setIsOpenForm] = useState<boolean>(false)
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
 	const { mutate } = useDeleteProject()
 	const { projects } = useProfile()
@@ -27,7 +27,7 @@ export const Account = () => {
 
 	const onEditProject = (data: IProject) => {
 		setIsUpdate(true)
-		setIsOpenForm(true)
+		setIsModalOpen(true)
 
 		setValue('id', data.id)
 		setValue('title', data.title)
@@ -37,29 +37,28 @@ export const Account = () => {
 
 	return (
 		<>
-			<button
-				className='absolute top-0 right-1'
-				title={isOpenForm ? 'Close project form' : 'Open project form'}
+			<Button
+				title='Add new project'
 				onClick={() => {
-					setIsOpenForm(prev => !prev)
+					setIsModalOpen(true)
 					setIsUpdate(false)
 					reset()
 				}}
 			>
-				{isOpenForm ? <CircleX /> : <CirclePlus />}
-			</button>
+				New project
+			</Button>
 
-			{isOpenForm && (
-				<ProjectForm
+			{isModalOpen && (
+				<ProjectModal
 					handleSubmit={handleSubmit}
 					register={register}
 					reset={reset}
 					isUpdate={isUpdate}
-					setIsOpenForm={setIsOpenForm}
+					setIsModalOpen={setIsModalOpen}
 				/>
 			)}
 
-			<div className='flex justify-center flex-wrap gap-2'>
+			<div className='flex justify-center flex-wrap gap-2 mt-2'>
 				{projects?.length
 					? projects.map(project => (
 							<ProjectCardAccount
@@ -69,7 +68,7 @@ export const Account = () => {
 								onEdit={onEditProject}
 							/>
 						))
-					: 'Нету проектов'}
+					: 'Пора добавить свой первый проект :)'}
 			</div>
 		</>
 	)

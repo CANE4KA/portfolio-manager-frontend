@@ -1,3 +1,4 @@
+import * as m from 'motion/react-m'
 import { Link } from 'react-router'
 import { twMerge } from 'tailwind-merge'
 
@@ -21,7 +22,15 @@ export const MenuItem = ({ item, isActive, isCollapsed }: Props) => {
 			title={item.name}
 		>
 			<item.icon />
-			{!isCollapsed && <span>{item.name}</span>}
+			{!isCollapsed && (
+				<m.span
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+				>
+					{item.name}
+				</m.span>
+			)}
 		</Link>
 	)
 }

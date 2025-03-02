@@ -12,7 +12,7 @@ export const Home = () => {
 				<p>Создайте и управляйте своим портфолио.</p>
 			</div>
 
-			<div className='flex justify-center gap-2 flex-wrap'>
+			<div className='flex justify-center gap-x-4 gap-y-6 flex-wrap'>
 				{projects?.map(project => (
 					<ProjectCard key={project.id} project={project} />
 				))}

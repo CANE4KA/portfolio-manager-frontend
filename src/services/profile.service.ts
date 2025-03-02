@@ -1,11 +1,11 @@
 import { axiosWithAuth } from '@/api/axios'
 
 export interface IProfile {
-	bio: string
-	location: string
-	website: string
-	github: string
-	telegram: string
+	bio?: string
+	location?: string
+	website?: string
+	github?: string
+	telegram?: string
 }
 
 class ProfileService {

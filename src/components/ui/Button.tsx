@@ -12,6 +12,7 @@ export const Button = ({ className, children, ...rest }: Button) => {
 			whileHover={{
 				x: -2,
 				y: -2,
+				rotate: 1,
 				transition: {
 					type: 'spring',
 					stiffness: 3000,

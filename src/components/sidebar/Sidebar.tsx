@@ -26,7 +26,7 @@ export const Sidebar = ({ isCollapsed, onToggle }: Props) => {
 
 	return (
 		<m.aside
-			className={`border border-border rounded flex flex-col justify-between items-center pb-5 m-2 mt-0 relative`}
+			className={`border border-border rounded flex flex-col justify-between items-center pb-5 m-2 mt-0 relative shadow-lg`}
 			animate={{ width: isCollapsed ? 60 : 192 }}
 			transition={{ type: 'spring', stiffness: 300, damping: 20 }}
 		>
